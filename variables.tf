@@ -20,7 +20,7 @@ variable "admin_ip_ranges" {
   type        = list(string)
 }
 
-variable "ssh_pubic_key" {
+variable "ssh_public_key" {
   description = "SSH Public Keys to SSH into the server"
   type        = string 
 }

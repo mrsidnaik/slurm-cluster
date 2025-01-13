@@ -130,7 +130,7 @@ resource "google_compute_instance" "gpu_node" {
   }
 
    metadata = {
-    ssh-keys = "admin:ssh-rsa ssh_public_key"
+    ssh-keys = var.ssh_public_key
   }
 
   tags = ["gpu-node", "slurm-cluster"]
