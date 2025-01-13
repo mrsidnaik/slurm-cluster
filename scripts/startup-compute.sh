@@ -4,7 +4,9 @@
 
 # Install dependencies
 dnf update -y
-dnf install -y slurm
+dnf config-manager --set-enabled powertools
+dnf install -y epel-release
+dnf install -y slurm slurm-devl slurm-slurmd
 dnf install -y nfs-utils
 dnf install -y munge munge-libs
 
