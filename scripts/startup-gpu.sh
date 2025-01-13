@@ -6,7 +6,7 @@
 dnf update -y
 dnf install -y slurm
 dnf install -y nfs-utils
-dnf install -y munge munge-libs munge-devel
+dnf install -y munge munge-libs
 
 # Install NVIDIA drivers
 dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo

@@ -6,7 +6,7 @@
 dnf update -y
 dnf install -y slurm
 dnf install -y nfs-utils
-dnf install -y munge munge-libs munge-devel
+dnf install -y munge munge-libs
 
 # Mount shared storage
 mkdir -p /shared
