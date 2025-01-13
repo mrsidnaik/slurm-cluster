@@ -140,8 +140,12 @@ resource "google_compute_instance" "gpu_node" {
   })
 }
 
-output "login_node_ip" {
+output "login_node_ext_ip" {
   value = google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip
+}
+
+output "login_node_ip" {
+  value = google_compute_instance.login_node.network_interface[0].ip_address
 }
 
 output "filestore_ip" {
