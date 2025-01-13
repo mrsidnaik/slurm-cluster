@@ -23,5 +23,5 @@ systemctl start slurmd
 
 # Create users (should match login node)
 useradd -m -G wheel slurmadmin
-useradd -m username
-usermod -aG slurm username
+useradd -m slurmuser
+usermod -aG slurm slurmuser

@@ -40,5 +40,5 @@ systemctl start slurmctld
 
 # Create users
 useradd -m -G wheel slurmadmin
-useradd -m username
-usermod -aG slurm username
+useradd -m slurmuser
+usermod -aG slurm slurmuser
