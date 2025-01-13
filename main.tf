@@ -67,16 +67,7 @@ resource "google_compute_instance" "login_node" {
   }
 
   metadata = {
-    ssh-keys = "admin:ssh-rsa ---- BEGIN SSH2 PUBLIC KEY ----
-Comment: "rsa-key-20250113"
-AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+
-XuemH+TM3XWhL9gYgKZQu1ocgd7F7yiJik0TBPUJ/ahSS5Uw4ditZofJgU4Wsk/M
-o2sa/WQp4aOSoOMwEqwD0EZlnBOD629lXwtPxfiGGdqt5du8ZaB66zJfgt6rNmSd
-ObPS0TAN7GhPVHWPhJdfyhxx8hcjSop9krSXF8px5VCrC+x9Y6TzY5sx5XDLh0gw
-AHclDfDTx430BK+ZFmJhWJ+XrCzCOBV0G5xNgSqw/Ju8X9Pju3UlF1M5YKVDFaRA
-jZyC4FcHejcrUh6XnurJk3arHvI/WoEjET/r9Tjxw3bBbA5jT7Hd
----- END SSH2 PUBLIC KEY ----
-"
+    ssh-keys = "admin:ssh-rsa ssh_public_key"
   }
 
   tags = ["login-node", "slurm-cluster"]
@@ -102,17 +93,8 @@ resource "google_compute_instance" "compute_node" {
     subnetwork = google_compute_subnetwork.slurm_subnet.id
   }
 
-  metadata = {
-    ssh-keys = "admin:ssh-rsa ---- BEGIN SSH2 PUBLIC KEY ----
-Comment: "rsa-key-20250113"
-AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+
-XuemH+TM3XWhL9gYgKZQu1ocgd7F7yiJik0TBPUJ/ahSS5Uw4ditZofJgU4Wsk/M
-o2sa/WQp4aOSoOMwEqwD0EZlnBOD629lXwtPxfiGGdqt5du8ZaB66zJfgt6rNmSd
-ObPS0TAN7GhPVHWPhJdfyhxx8hcjSop9krSXF8px5VCrC+x9Y6TzY5sx5XDLh0gw
-AHclDfDTx430BK+ZFmJhWJ+XrCzCOBV0G5xNgSqw/Ju8X9Pju3UlF1M5YKVDFaRA
-jZyC4FcHejcrUh6XnurJk3arHvI/WoEjET/r9Tjxw3bBbA5jT7Hd
----- END SSH2 PUBLIC KEY ----
-"
+   metadata = {
+    ssh-keys = "admin:ssh-rsa ssh_public_key"
   }
 
   tags = ["compute-node", "slurm-cluster"]
@@ -147,17 +129,8 @@ resource "google_compute_instance" "gpu_node" {
     subnetwork = google_compute_subnetwork.slurm_subnet.id
   }
 
-  metadata = {
-    ssh-keys = "admin:ssh-rsa ---- BEGIN SSH2 PUBLIC KEY ----
-Comment: "rsa-key-20250113"
-AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+
-XuemH+TM3XWhL9gYgKZQu1ocgd7F7yiJik0TBPUJ/ahSS5Uw4ditZofJgU4Wsk/M
-o2sa/WQp4aOSoOMwEqwD0EZlnBOD629lXwtPxfiGGdqt5du8ZaB66zJfgt6rNmSd
-ObPS0TAN7GhPVHWPhJdfyhxx8hcjSop9krSXF8px5VCrC+x9Y6TzY5sx5XDLh0gw
-AHclDfDTx430BK+ZFmJhWJ+XrCzCOBV0G5xNgSqw/Ju8X9Pju3UlF1M5YKVDFaRA
-jZyC4FcHejcrUh6XnurJk3arHvI/WoEjET/r9Tjxw3bBbA5jT7Hd
----- END SSH2 PUBLIC KEY ----
-"
+   metadata = {
+    ssh-keys = "admin:ssh-rsa ssh_public_key"
   }
 
   tags = ["gpu-node", "slurm-cluster"]
