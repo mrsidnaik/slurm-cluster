@@ -74,7 +74,7 @@ resource "google_compute_instance" "login_node" {
 }
 
 resource "google_compute_instance" "compute_node" {
-  name         = "compute_node"
+  name         = "compute-node"
   machine_type = "c2-standard-8"
   zone         = var.zone
 
@@ -97,7 +97,7 @@ resource "google_compute_instance" "compute_node" {
 }
 
 resource "google_compute_instance" "gpu_node" {
-  name         = "gpu_node"
+  name         = "gpu-node"
   machine_type = "g2-standard-12"
   zone         = var.zone
 

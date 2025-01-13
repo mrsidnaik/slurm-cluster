@@ -24,11 +24,11 @@ ClusterName=gcp_cluster
 ControlMachine=login-node
 SlurmUser=slurm
 
-NodeName=compute_node NodeAddr=COMPUTE_INTERNAL_IP CPUs=8 RealMemory=32000 State=UNKNOWN
-NodeName=gpu_node NodeAddr=GPU_INTERNAL_IP CPUs=12 RealMemory=48000 Gres=gpu:l4:1 State=UNKNOWN
+NodeName=compute-node NodeAddr=COMPUTE_INTERNAL_IP CPUs=8 RealMemory=32000 State=UNKNOWN
+NodeName=gpu-node NodeAddr=GPU_INTERNAL_IP CPUs=12 RealMemory=48000 Gres=gpu:l4:1 State=UNKNOWN
 
-PartitionName=general Nodes=compute_node Default=YES MaxTime=INFINITE State=UP
-PartitionName=gpu Nodes=gpu_node Default=NO MaxTime=INFINITE State=UP
+PartitionName=general Nodes=compute-node Default=YES MaxTime=INFINITE State=UP
+PartitionName=gpu Nodes=gpu-node Default=NO MaxTime=INFINITE State=UP
 
 SlurmctldPort=6817
 SlurmdPort=6818
