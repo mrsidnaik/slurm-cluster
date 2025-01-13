@@ -3,12 +3,12 @@
 # Startup script for compute node
 
 # Install dependencies
-dnf update -y
-dnf config-manager --set-enabled powertools
-dnf install -y epel-release
-dnf install -y slurm slurm-devl slurm-slurmd
-dnf install -y nfs-utils
-dnf install -y munge munge-libs
+sudo dnf update -y
+sudo dnf config-manager --set-enabled powertools
+sudo dnf install -y epel-release
+sudo dnf install -y slurm slurm-devl slurm-slurmd
+sudo dnf install -y nfs-utils
+sudo dnf install -y munge munge-libs
 
 # Mount shared storage
 mkdir -p /shared

@@ -3,12 +3,12 @@
 # Startup script for GPU node
 
 # Install dependencies
-dnf update -y
-dnf config-manager --set-enabled powertools
-dnf install -y epel-release
-dnf install -y slurm slurm-devl slurm-slurmd
-dnf install -y nfs-utils
-dnf install -y munge munge-libs
+sudo dnf update -y
+sudo dnf config-manager --set-enabled powertools
+sudo dnf install -y epel-release
+sudo dnf install -y slurm slurm-devl slurm-slurmd
+sudo dnf install -y nfs-utils
+sudo dnf install -y munge munge-libs
 
 # Install NVIDIA drivers
 dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
