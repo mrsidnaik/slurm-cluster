@@ -35,7 +35,7 @@ resource "google_compute_firewall" "slurm_login" {
 resource "google_filestore_instance" "slurm_storage" {
   name     = "slurm-storage"
   location = var.zone
-  tier     = "BASIC"
+  tier     = "BASIC_HDD"
 
   file_shares {
     name        = "nfs1"
