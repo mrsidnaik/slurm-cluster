@@ -19,7 +19,7 @@ mount -a
 
 # Configure munge (key needs to be copied from login node)
 mkdir -p /etc/munge
-scp ${terraform outputs -raw login_node_ip}:/etc/munge/munge.key /etc/munge/munge.key
+scp ${login_node_ip}:/etc/munge/munge.key /etc/munge/munge.key
 chown munge:munge /etc/munge/munge.key
 chmod 400 /etc/munge/munge.key
 systemctl enable munge
@@ -33,7 +33,7 @@ EOL
 # Start Slurm daemon
 mkdir -p /etc/slurm /var/spool/slurmd
 chown slurm:slurm /var/spool/slurmd
-scp ${terraform outputs -raw login_node_ip}:/etc/slurm/slurm.conf /etc/slurm/slurm.conf
+scp ${login_node_ip}:/etc/slurm/slurm.conf /etc/slurm/slurm.conf
 systemctl enable slurmd
 systemctl start slurmd
 
