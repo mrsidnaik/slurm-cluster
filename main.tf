@@ -67,7 +67,7 @@ resource "google_compute_instance" "login_node" {
   }
 
   metadata = {
-    ssh-keys = "admin:ssh-rsa ssh_public_key"
+    ssh-keys = var.ssh_public_key
   }
 
   tags = ["login-node", "slurm-cluster"]
@@ -94,7 +94,7 @@ resource "google_compute_instance" "compute_node" {
   }
 
    metadata = {
-    ssh-keys = "admin:ssh-rsa ssh_public_key"
+    ssh-keys = var.ssh_public_key
   }
 
   tags = ["compute-node", "slurm-cluster"]
