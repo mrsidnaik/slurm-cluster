@@ -28,7 +28,7 @@ resource "google_compute_firewall" "slurm_login" {
   }
 
   source_ranges = var.admin_ip_ranges
-  target_tags   = ["login-node"]
+  target_tags   = ["login-node","compute-node","gpu-node"]
 }
 
 resource "google_compute_firewall" "compute_gpu_login" {
