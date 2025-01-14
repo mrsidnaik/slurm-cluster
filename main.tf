@@ -31,6 +31,20 @@ resource "google_compute_firewall" "slurm_login" {
   target_tags   = ["login-node"]
 }
 
+resource "google_compute_firewall" "compute_gpu_login" {
+  name    = "compute-gpu-login"
+  network = google_compute_network.slurm_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "443", "6817-6819"]
+  }
+
+  source_ranges = google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip
+  target_tags   = ["compute-node","gpu-node"]
+}
+
+
 # Filestore instance
 resource "google_filestore_instance" "slurm_storage" {
   name     = "slurm-storage"
