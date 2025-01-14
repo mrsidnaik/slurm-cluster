@@ -4,10 +4,11 @@ provider "google" {
   region  = var.region
 }
 
-# Network resources
+# Network resources with updated configuration
 resource "google_compute_network" "slurm_network" {
   name                    = "slurm-network"
   auto_create_subnetworks = false
+  routing_mode           = "REGIONAL"  # Explicitly set routing mode
 }
 
 resource "google_compute_subnetwork" "slurm_subnet" {
@@ -15,20 +16,79 @@ resource "google_compute_subnetwork" "slurm_subnet" {
   ip_cidr_range = "10.0.0.0/24"
   region        = var.region
   network       = google_compute_network.slurm_network.id
+  
+  # Enable private Google access
+  private_ip_google_access = true
 }
 
-# Firewall rules
-resource "google_compute_firewall" "slurm_login" {
-  name    = "slurm-login"
+# Updated firewall rules
+# 1. Allow SSH from admin IPs
+resource "google_compute_firewall" "allow_ssh" {
+  name    = "allow-ssh"
   network = google_compute_network.slurm_network.id
 
   allow {
     protocol = "tcp"
-    ports    = ["22", "443", "6817-6819"]
+    ports    = ["22"]
   }
 
   source_ranges = var.admin_ip_ranges
-  target_tags   = ["login-node","compute-node","gpu-node"]
+  target_tags   = ["login-node"]
+}
+
+# 2. Allow Slurm ports
+resource "google_compute_firewall" "allow_slurm" {
+  name    = "allow-slurm"
+  network = google_compute_network.slurm_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["6817-6819"]
+  }
+
+  source_tags = ["slurm-cluster"]
+  target_tags = ["slurm-cluster"]
+}
+
+# 3. Allow internal communication
+resource "google_compute_firewall" "allow_internal" {
+  name    = "allow-internal"
+  network = google_compute_network.slurm_network.id
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["0-65535"]
+  }
+
+  allow {
+    protocol = "udp"
+    ports    = ["0-65535"]
+  }
+
+  source_ranges = ["10.0.0.0/24"]  # Matches subnet CIDR
+}
+
+# 4. Allow NFS traffic
+resource "google_compute_firewall" "allow_nfs" {
+  name    = "allow-nfs"
+  network = google_compute_network.slurm_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["111", "2049"]
+  }
+
+  allow {
+    protocol = "udp"
+    ports    = ["111", "2049"]
+  }
+
+  source_tags = ["slurm-cluster"]
+  target_tags = ["slurm-cluster"]
 }
 
 
@@ -92,7 +152,7 @@ resource "google_compute_instance" "compute_node" {
 
   network_interface {
     subnetwork = google_compute_subnetwork.slurm_subnet.id
-    access_config {} # Enables external IP
+    #access_config {} # Enables external IP
   }
 
    metadata = {
@@ -130,7 +190,7 @@ resource "google_compute_instance" "gpu_node" {
 
   network_interface {
     subnetwork = google_compute_subnetwork.slurm_subnet.id
-    access_config {} # Enables external IP
+    #access_config {} # Enables external IP
   }
 
    metadata = {
