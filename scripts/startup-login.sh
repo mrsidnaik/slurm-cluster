@@ -37,8 +37,8 @@ StateSaveLocation=/var/spool/slurmd
 SlurmdSpoolDir=/var/spool/slurmd
 AuthType=auth/munge
 SchedulerType=sched/backfill
-NodeName=compute-node-[1-10] CPUs=8 RealMemory=32000
-NodeName=gpu-node-[1-10] CPUs=12 RealMemory=48000 Gres=gpu:1
+NodeName=compute-node CPUs=8 RealMemory=32000
+NodeName=gpu-node CPUs=12 RealMemory=48000 Gres=gpu:1
 PartitionName=debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP
 EOT
 
