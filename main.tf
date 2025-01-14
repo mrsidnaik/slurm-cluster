@@ -40,7 +40,7 @@ resource "google_compute_firewall" "compute_gpu_login" {
     ports    = ["22", "443", "6817-6819"]
   }
 
-  source_ranges = ["google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip"]
+  source_ranges = ["${google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip}/32"]
   target_tags   = ["compute-node","gpu-node"]
 }
 
