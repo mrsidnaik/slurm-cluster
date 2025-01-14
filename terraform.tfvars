@@ -1,5 +1,6 @@
-project_id      = "imcm-candidate-test"
-region          = "europe-west2"
-zone            = "europe-west2-a"
-admin_ip_ranges = ["90.213.17.217/32"]
-ssh_public_key = "slurmadmin:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+XuemH+TM3XWhL9gYgKZQu1ocgd7F7yiJik0TBPUJ/ahSS5Uw4ditZofJgU4Wsk/Mo2sa/WQp4aOSoOMwEqwD0EZlnBOD629lXwtPxfiGGdqt5du8ZaB66zJfgt6rNmSdObPS0TAN7GhPVHWPhJdfyhxx8hcjSop9krSXF8px5VCrC+x9Y6TzY5sx5XDLh0gwAHclDfDTx430BK+ZFmJhWJ+XrCzCOBV0G5xNgSqw/Ju8X9Pju3UlF1M5YKVDFaRAjZyC4FcHejcrUh6XnurJk3arHvI/WoEjET/r9Tjxw3bBbA5jT7Hd"
+project_id       = "imcm-candidate-test"
+region           = "europe-west2"
+zone             = "europe-west2-a"
+admin_ip_ranges  = ["90.213.17.217/32"]
+ssh_public_key   = "slurmadmin:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+XuemH+TM3XWhL9gYgKZQu1ocgd7F7yiJik0TBPUJ/ahSS5Uw4ditZofJgU4Wsk/Mo2sa/WQp4aOSoOMwEqwD0EZlnBOD629lXwtPxfiGGdqt5du8ZaB66zJfgt6rNmSdObPS0TAN7GhPVHWPhJdfyhxx8hcjSop9krSXF8px5VCrC+x9Y6TzY5sx5XDLh0gwAHclDfDTx430BK+ZFmJhWJ+XrCzCOBV0G5xNgSqw/Ju8X9Pju3UlF1M5YKVDFaRAjZyC4FcHejcrUh6XnurJk3arHvI/WoEjET/r9Tjxw3bBbA5jT7Hd"
+internal_ssh_key = "slurmadmin:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQl0vjLexiJOQAecjKbWUgoQxSkwIfdPeUIgEtVJks56mjo1zSPTbxWJda3oFH3AUnCH5W/tovM+tluKIfTVsjjyZdBRIKaH4K+WB0C8czYpLEKGj8uAHE/TxgYf4y0zXMX2yeYaUUPcKkVYkvww6k/wL3uxV7lLUdk+uZNACcjmvrdqzg/gEka4R84zVMfldxbHVXKN5QNW+DnRN99/ScVpq4ziFYb/kVzltm9aCg3ILOCl0qvmo+OvOdjqjI52Fk32mCfMRl3ETCfQABstk8eAI1OEm8EalrQCr9bK7VymINC4a9+bOogEYdTiMXTcogyCTzDLjvaXcczCUUYu/4ly0xbZQrytIQKf2F0U9fGTMsYeM8dcenHQGdx+kfUwASODy3AY4vsOkrNGzFso/L32LuqJgTqMywwfOYkNuilC1Io2B35QVpbEk6az0bP+M59UB2mvWEzI/j6I4e6wr0Ec/0jaavABvJOoQkY7JyDc+npzPjz3vdxAgJLwdZR2FM6hUiEQSPPGypHYwpGP4ZwoUeCiOL+nh7loFLLnBx0P8pU9mUy8P8T0bDS2AJtSL9DQOIY6P8TQwyLGigA1GewfkJeegQFverZfOkruAtBLW1Pw8OvjQ117WY0EopyuUGuOlZsAythlIEzKSPPioFuzYOQ8UmAV97Kh6LWCDEZQ=="

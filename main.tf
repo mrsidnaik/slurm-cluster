@@ -156,7 +156,8 @@ resource "google_compute_instance" "compute_node" {
   }
 
    metadata = {
-    ssh-keys = var.ssh_public_key
+    enable-oslogin = "TRUE"
+    ssh-keys = var.internal_ssh_key
   }
 
   tags = ["compute-node", "slurm-cluster"]
@@ -194,7 +195,8 @@ resource "google_compute_instance" "gpu_node" {
   }
 
    metadata = {
-    ssh-keys = var.ssh_public_key
+    enable-oslogin = "TRUE"
+    ssh-keys = var.internal_ssh_key
   }
 
   tags = ["gpu-node", "slurm-cluster"]

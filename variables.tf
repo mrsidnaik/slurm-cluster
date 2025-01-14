@@ -24,3 +24,8 @@ variable "ssh_public_key" {
   description = "SSH Public Keys to SSH into the server"
   type        = string 
 }
+
+variable "internal_ssh_key" {
+  description = "SSH public key for internal access from login node"
+  type        = string
+}
