@@ -51,7 +51,7 @@ useradd -m -G wheel slurmadmin
 useradd -m slurmuser
 usermod -aG slurm slurmuser
 
-cat <<EOT | sudo tee /home/slurmadmin/public-key
+cat <<EOT | sudo tee /home/slurmadmin/public-key.pem
 ---- BEGIN SSH2 PUBLIC KEY ----
 Comment: "rsa-key-20250113"
 AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+
