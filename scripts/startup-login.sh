@@ -50,3 +50,15 @@ systemctl start slurmctld
 useradd -m -G wheel slurmadmin
 useradd -m slurmuser
 usermod -aG slurm slurmuser
+
+cat <<EOT | sudo tee /home/slurmadmin/public-key
+---- BEGIN SSH2 PUBLIC KEY ----
+Comment: "rsa-key-20250113"
+AAAAB3NzaC1yc2EAAAADAQABAAABAQCsdQFzBXSMqLP3KpwC0EvR4hhC1KDCDGO+
+XuemH+TM3XWhL9gYgKZQu1ocgd7F7yiJik0TBPUJ/ahSS5Uw4ditZofJgU4Wsk/M
+o2sa/WQp4aOSoOMwEqwD0EZlnBOD629lXwtPxfiGGdqt5du8ZaB66zJfgt6rNmSd
+ObPS0TAN7GhPVHWPhJdfyhxx8hcjSop9krSXF8px5VCrC+x9Y6TzY5sx5XDLh0gw
+AHclDfDTx430BK+ZFmJhWJ+XrCzCOBV0G5xNgSqw/Ju8X9Pju3UlF1M5YKVDFaRA
+jZyC4FcHejcrUh6XnurJk3arHvI/WoEjET/r9Tjxw3bBbA5jT7Hd
+---- END SSH2 PUBLIC KEY ----
+EOT
