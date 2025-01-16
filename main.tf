@@ -182,7 +182,7 @@ resource "google_compute_instance" "compute_node" {
   metadata_startup_script = templatefile("${path.module}/scripts/startup-compute.sh", {
     filestore_ip = google_filestore_instance.slurm_storage.networks[0].ip_addresses[0]
   })
-  depends_on = [ google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip ]
+  depends_on = [ google_compute_instance.login_node ]
 }
 
 resource "google_compute_instance" "gpu_node" {
