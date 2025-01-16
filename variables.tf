@@ -6,13 +6,13 @@ variable "project_id" {
 variable "region" {
   description = "GCP Region"
   type        = string
-  default     = "us-central1"
+  default     = "europe-west2"
 }
 
 variable "zone" {
   description = "GCP Zone"
   type        = string
-  default     = "us-central1-a"
+  default     = "europe-west2-a"
 }
 
 variable "admin_ip_ranges" {
@@ -23,9 +23,4 @@ variable "admin_ip_ranges" {
 variable "ssh_public_key" {
   description = "SSH Public Keys to SSH into the server"
   type        = string 
-}
-
-variable "internal_ssh_key" {
-  description = "SSH public key for internal access from login node"
-  type        = string
 }

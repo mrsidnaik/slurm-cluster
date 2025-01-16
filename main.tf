@@ -6,13 +6,13 @@ provider "google" {
 
 # Network resources with updated configuration
 resource "google_compute_network" "slurm_network" {
-  name                    = "slurm-network"
+  name                    = "slurm-network2"
   auto_create_subnetworks = false
   routing_mode           = "REGIONAL"  # Explicitly set routing mode
 }
 
 resource "google_compute_subnetwork" "slurm_subnet" {
-  name          = "slurm-subnet"
+  name          = "slurm-subnet2"
   ip_cidr_range = "10.0.0.0/24"
   region        = var.region
   network       = google_compute_network.slurm_network.id
@@ -33,7 +33,7 @@ resource "google_compute_firewall" "allow_ssh" {
   }
 
   source_ranges = var.admin_ip_ranges
-  target_tags   = ["login-node"]
+  target_tags   = ["login-node2"]
 }
 
 # 2. Allow Slurm ports
@@ -46,8 +46,8 @@ resource "google_compute_firewall" "allow_slurm" {
     ports    = ["6817-6819"]
   }
 
-  source_tags = ["slurm-cluster"]
-  target_tags = ["slurm-cluster"]
+  source_tags = ["slurm-cluster2"]
+  target_tags = ["slurm-cluster2"]
 }
 
 # 3. Allow internal communication
@@ -87,14 +87,36 @@ resource "google_compute_firewall" "allow_nfs" {
     ports    = ["111", "2049"]
   }
 
-  source_tags = ["slurm-cluster"]
-  target_tags = ["slurm-cluster"]
+  source_tags = ["slurm-cluster2"]
+  target_tags = ["slurm-cluster2"]
+}
+
+#Nat configuration
+resource "google_compute_router_nat" "nat" {
+  name                               = "slurm-nat2"
+  router                             = google_compute_router.router.name
+  region                             = var.region
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+
+  log_config {
+    enable = true
+    filter = "ERRORS_ONLY"
+  }
+}
+
+#Cloud router
+resource "google_compute_router" "router" {
+  project = var.project_id
+  name    = "slurm-router2"
+  network = google_compute_network.slurm_network.name
+  region  = var.region
 }
 
 
 # Filestore instance
 resource "google_filestore_instance" "slurm_storage" {
-  name     = "slurm-storage"
+  name     = "slurm-storage2"
   location = var.zone
   tier     = "BASIC_HDD"
 
@@ -111,7 +133,7 @@ resource "google_filestore_instance" "slurm_storage" {
 
 # Compute instances
 resource "google_compute_instance" "login_node" {
-  name         = "login-node"
+  name         = "login-node2"
   machine_type = "n2-standard-4"
   zone         = var.zone
 
@@ -131,7 +153,7 @@ resource "google_compute_instance" "login_node" {
     ssh-keys = var.ssh_public_key
   }
 
-  tags = ["login-node", "slurm-cluster"]
+  tags = ["login-node2", "slurm-cluster2"]
 
   metadata_startup_script = templatefile("${path.module}/scripts/startup-login.sh", {
     filestore_ip = google_filestore_instance.slurm_storage.networks[0].ip_addresses[0]
@@ -139,7 +161,7 @@ resource "google_compute_instance" "login_node" {
 }
 
 resource "google_compute_instance" "compute_node" {
-  name         = "compute-node"
+  name         = "compute-node2"
   machine_type = "c2-standard-8"
   zone         = var.zone
 
@@ -155,21 +177,15 @@ resource "google_compute_instance" "compute_node" {
     #access_config {} # Enables external IP
   }
 
-   metadata = {
-    enable-oslogin = "TRUE"
-    ssh-keys = var.internal_ssh_key
-  }
-
-  tags = ["compute-node", "slurm-cluster"]
+  tags = ["compute-node2", "slurm-cluster2"]
 
   metadata_startup_script = templatefile("${path.module}/scripts/startup-compute.sh", {
     filestore_ip = google_filestore_instance.slurm_storage.networks[0].ip_addresses[0]
-    login_node_ip = google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip
   })
 }
 
 resource "google_compute_instance" "gpu_node" {
-  name         = "gpu-node"
+  name         = "gpu-node2"
   machine_type = "g2-standard-12"
   zone         = var.zone
 
@@ -194,16 +210,10 @@ resource "google_compute_instance" "gpu_node" {
     #access_config {} # Enables external IP
   }
 
-   metadata = {
-    enable-oslogin = "TRUE"
-    ssh-keys = var.internal_ssh_key
-  }
-
-  tags = ["gpu-node", "slurm-cluster"]
+  tags = ["gpu-node2", "slurm-cluster2"]
 
   metadata_startup_script = templatefile("${path.module}/scripts/startup-gpu.sh", {
     filestore_ip = google_filestore_instance.slurm_storage.networks[0].ip_addresses[0]
-    login_node_ip = google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip
   })
 }
 
