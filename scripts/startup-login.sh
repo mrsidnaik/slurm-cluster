@@ -3,6 +3,7 @@
 # Startup script for login node
 
 sudo su
+
 # Install dependencies
 sudo dnf update -y
 sudo dnf config-manager --set-enabled powertools
