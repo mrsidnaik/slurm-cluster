@@ -160,15 +160,6 @@ resource "google_compute_instance" "login_node" {
   })
 }
 
-resource "time_sleep" "script_completion" {
-  create_duration = "120s"
-
-  triggers = {
-    # This sets up a proper dependency on the RAM association
-    login_node_ip = google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip
-  }
-}
-
 resource "google_compute_instance" "compute_node" {
   name         = "compute-node2"
   machine_type = "c2-standard-8"
@@ -191,6 +182,7 @@ resource "google_compute_instance" "compute_node" {
   metadata_startup_script = templatefile("${path.module}/scripts/startup-compute.sh", {
     filestore_ip = google_filestore_instance.slurm_storage.networks[0].ip_addresses[0]
   })
+  depends_on = [ google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip ]
 }
 
 resource "google_compute_instance" "gpu_node" {
@@ -224,6 +216,8 @@ resource "google_compute_instance" "gpu_node" {
   metadata_startup_script = templatefile("${path.module}/scripts/startup-gpu.sh", {
     filestore_ip = google_filestore_instance.slurm_storage.networks[0].ip_addresses[0]
   })
+
+  depends_on = [ google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip ]
 }
 
 output "login_node_ip" {
