@@ -22,7 +22,6 @@ sudo usermod -aG slurm slurmuser
 # Mount shared storage
 sudo mkdir -p /shared
 sudo echo "${filestore_ip}:/nfs1 /shared nfs defaults 0 0" >> /etc/fstab
-sudo systemctl daemon-reload
 sudo mount -a
 
 # Configure munge (key needs to be copied from login node)
