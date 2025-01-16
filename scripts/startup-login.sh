@@ -50,8 +50,8 @@ SlurmdSpoolDir=/var/spool/slurmd
 AuthType=auth/munge
 SchedulerType=sched/backfill
 
-NodeName=compute-node2 CPUs=8 RealMemory=32000
-NodeName=gpu-node2 CPUs=12 RealMemory=48000 Gres=gpu:1
+NodeName=compute-node2 CPUs=8 RealMemory=31000
+NodeName=gpu-node2 CPUs=12 RealMemory=47000 Gres=gpu:1
 
 PartitionName=debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP
 
