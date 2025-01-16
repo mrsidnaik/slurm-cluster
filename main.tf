@@ -160,6 +160,15 @@ resource "google_compute_instance" "login_node" {
   })
 }
 
+resource "time_sleep" "script_completion" {
+  create_duration = "120s"
+
+  triggers = {
+    # This sets up a proper dependency on the RAM association
+    login_node_ip = google_compute_instance.login_node.network_interface[0].access_config[0].nat_ip
+  }
+}
+
 resource "google_compute_instance" "compute_node" {
   name         = "compute-node2"
   machine_type = "c2-standard-8"
