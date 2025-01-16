@@ -39,4 +39,3 @@ sudo chown slurm:slurm /var/spool/slurmd
 sudo cp /shared/slurm.conf /etc/slurm/slurm.conf
 sudo systemctl enable slurmd
 sudo systemctl start slurmd
-sudo scontrol reconfigure
