@@ -42,7 +42,7 @@ sudo chown slurm:slurm /var/log/slurmd.log /var/log/slurmctld.log
 
 sudo cat <<EOT | sudo tee /etc/slurm/slurm.conf
 ClusterName=slurm-cluster
-ControlMachine=login-node2
+ControlMachine=login-node
 
 SlurmUser=slurm
 StateSaveLocation=/var/spool/slurmd
@@ -51,8 +51,8 @@ SlurmdSpoolDir=/var/spool/slurmd
 AuthType=auth/munge
 SchedulerType=sched/backfill
 
-NodeName=compute-node2 CPUs=8 RealMemory=31000
-NodeName=gpu-node2 CPUs=12 RealMemory=47000 Gres=gpu:1
+NodeName=compute-node CPUs=8 RealMemory=31000
+NodeName=gpu-node CPUs=12 RealMemory=47000 Gres=gpu:1
 
 PartitionName=debug Nodes=ALL Default=YES MaxTime=INFINITE State=UP
 
