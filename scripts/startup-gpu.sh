@@ -19,7 +19,6 @@ sudo useradd -m slurmuser
 sudo useradd -g slurm slurm
 sudo usermod -aG slurm slurmuser
 
-
 # Install NVIDIA drivers
 sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
 sudo dnf install -y cuda-toolkit
