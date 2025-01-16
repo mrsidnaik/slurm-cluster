@@ -2,7 +2,7 @@
 #!/bin/bash
 # Startup script for compute node
 
-sudi su
+sudo su
 
 # Install dependencies
 sudo dnf update -y
