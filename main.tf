@@ -24,7 +24,7 @@ resource "google_compute_subnetwork" "slurm_subnet" {
 # Updated firewall rules
 # 1. Allow SSH from admin IPs
 resource "google_compute_firewall" "allow_ssh" {
-  name    = "allow-ssh"
+  name    = "allow-ssh2"
   network = google_compute_network.slurm_network.id
 
   allow {
@@ -38,7 +38,7 @@ resource "google_compute_firewall" "allow_ssh" {
 
 # 2. Allow Slurm ports
 resource "google_compute_firewall" "allow_slurm" {
-  name    = "allow-slurm"
+  name    = "allow-slurm2"
   network = google_compute_network.slurm_network.id
 
   allow {
@@ -52,7 +52,7 @@ resource "google_compute_firewall" "allow_slurm" {
 
 # 3. Allow internal communication
 resource "google_compute_firewall" "allow_internal" {
-  name    = "allow-internal"
+  name    = "allow-internal2"
   network = google_compute_network.slurm_network.id
 
   allow {
@@ -74,7 +74,7 @@ resource "google_compute_firewall" "allow_internal" {
 
 # 4. Allow NFS traffic
 resource "google_compute_firewall" "allow_nfs" {
-  name    = "allow-nfs"
+  name    = "allow-nfs2"
   network = google_compute_network.slurm_network.id
 
   allow {
