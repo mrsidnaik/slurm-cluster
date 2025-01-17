@@ -64,7 +64,7 @@ EOT
 sudo cp /etc/slurm/slurm.conf /shared/slurm.conf
 sudo cp /etc/munge/munge.key /shared/munge.key
 
+# Start slurm
 sudo systemctl enable slurmctld
 sudo systemctl start slurmctld
 sudo scontrol reconfigure
-

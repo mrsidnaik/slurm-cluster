@@ -4,11 +4,11 @@ provider "google" {
   region  = var.region
 }
 
-# Network resources with updated configuration
+# Network resources configuration
 resource "google_compute_network" "slurm_network" {
   name                    = "slurm-network"
   auto_create_subnetworks = false
-  routing_mode           = "REGIONAL"  # Explicitly set routing mode
+  routing_mode           = "REGIONAL"  
 }
 
 resource "google_compute_subnetwork" "slurm_subnet" {
@@ -21,7 +21,7 @@ resource "google_compute_subnetwork" "slurm_subnet" {
   private_ip_google_access = true
 }
 
-# Updated firewall rules
+# Firewall rules
 # 1. Allow SSH from admin IPs
 resource "google_compute_firewall" "allow_ssh" {
   name    = "allow-ssh"
@@ -91,7 +91,7 @@ resource "google_compute_firewall" "allow_nfs" {
   target_tags = ["slurm-cluster"]
 }
 
-#Nat configuration
+# Nat configuration
 resource "google_compute_router_nat" "nat" {
   name                               = "slurm-nat"
   router                             = google_compute_router.router.name
@@ -105,7 +105,7 @@ resource "google_compute_router_nat" "nat" {
   }
 }
 
-#Cloud router
+# Cloud router
 resource "google_compute_router" "router" {
   project = var.project_id
   name    = "slurm-router"
